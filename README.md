@@ -26,15 +26,12 @@ Welcome to the central academic coursework repository for my undergraduate degre
 | :--------------------- | :------------------------------------------- |
 | **Student Name**       | Vishal Prajapati                             |
 | **Roll Number**        | FDAI044-A                                    |
-| **Course Name**        | Programming with C                           |
-| **Academic Unit**      | Unit 1: Control Structures & Decision Making |
 | **Institution**        | KES' Shroff College                          |
-| **Submission Date**    | September 1, 2026                            |
 | **Repository Purpose** | GitHub Academic Assignment Submission        |
 
 ---
 
-## 🗂️ Subject-Wise Coursework & Syllabus
+## 🗂️ Subject-Wise Assignments
 
 ### 1. 💻 Programming with C (`/C/`)
 
