@@ -40,17 +40,17 @@ Welcome to the central academic coursework repository for my undergraduate degre
 
 | Unit       | Topic / Content                                            |      Status      | Link / Folder               |
 | :--------- | :--------------------------------------------------------- | :--------------: | :-------------------------- |
-| **Unit 1** | Control Structures (`switch`, `do-while` ATM & Calculator) | ✅ **Completed** | [`/C/Unit_1/`](./C/Unit_1/) |
+| **Unit 1** | Control Structures (`switch`, `do-while` ATM & Calculator) | ✅ **Completed** | [`/C/UNIT 1/`](./C/UNIT%201/) |
 | **Unit 2** | Up Coming                                                  | 🔄 **Upcoming**  | `/C/Unit_2/`                |
 
 ---
 
 ### 2. 🗄️ Database Management Systems (`/DBMS/`)
 
-| Unit       | Topic / Content                |     Status     | Link / Folder   |
-| :--------- | :----------------------------- | :------------: | :-------------- |
-| **Unit 1** | SMART CAMPUS MANAGEMENT SYSTEM | ⏳ **Pending** | `/DBMS/Unit_1/` |
-| **Unit 2** | UPCOMING                       | ⏳ **Pending** | `/DBMS/Unit_2/` |
+| Unit       | Topic / Content                |      Status      | Link / Folder                 |
+| :--------- | :----------------------------- | :--------------: | :---------------------------- |
+| **Unit 1** | SMART CAMPUS MANAGEMENT SYSTEM | ✅ **Completed** | [`/DBMS/UNIT 1/`](./DBMS/UNIT%201/) |
+| **Unit 2** | UPCOMING                       |  ⏳ **Pending**  | `/DBMS/Unit_2/`               |
 
 <!-- ---
 
@@ -71,13 +71,15 @@ Assignments/
 ├── README.md                          <-- Main Repository README
 │
 ├── C/
-│   ├── Unit_1/
+│   ├── UNIT 1/
 │   │   ├── README.md                  <-- Unit 1 Documentation Report
 │   │   ├── scientific_calculator.c    <-- Calculator Source Code
 │   │   └── atm_simulation.c           <-- ATM Simulation Source Code
 │   └── Unit_2/                        <-- Upcoming
 │
 ├── DBMS/
-│   ├── Unit_1/                        <-- Pending
-│   └── Unit_2/                        <-- Pending
+│   ├── UNIT 1/
+│   │   ├── README.md                  <-- DBMS Unit 1 Documentation Report
+│   │   └── smart_campus_management.sql <-- SQL Project Script
+│   └── Unit_2/                        <-- Upcoming
 ```
