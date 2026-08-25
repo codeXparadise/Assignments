@@ -1,0 +1,453 @@
+[
+  {
+    "id": "1.1",
+    "category": "Retrieval",
+    "title": "Show all students",
+    "sql": "SELECT * FROM Student;",
+    "assets": [
+      "assets/query_outputs/q01_01_retrieval_output_01.png"
+    ],
+    "output_lines": 24
+  },
+  {
+    "id": "1.2",
+    "category": "Retrieval",
+    "title": "Show name, roll number and cgpa of students, highest cgpa first",
+    "sql": "SELECT full_name, roll_no, cgpa FROM Student ORDER BY cgpa DESC;",
+    "assets": [
+      "assets/query_outputs/q01_02_retrieval_output_01.png"
+    ],
+    "output_lines": 24
+  },
+  {
+    "id": "1.3",
+    "category": "Retrieval",
+    "title": "Show all faculty members from the Artificial Intelligence department",
+    "sql": "SELECT full_name, designation, email\nFROM Faculty\nWHERE dept_id = (SELECT dept_id FROM Department WHERE dept_name = 'Artificial Intelligence');",
+    "assets": [
+      "assets/query_outputs/q01_03_retrieval_output_01.png"
+    ],
+    "output_lines": 8
+  },
+  {
+    "id": "1.4",
+    "category": "Retrieval",
+    "title": "Show students who took admission in 2024",
+    "sql": "SELECT roll_no, full_name, admission_year FROM Student WHERE admission_year = 2024;",
+    "assets": [
+      "assets/query_outputs/q01_04_retrieval_output_01.png"
+    ],
+    "output_lines": 11
+  },
+  {
+    "id": "1.5",
+    "category": "Retrieval",
+    "title": "Show all courses that carry 4 credits",
+    "sql": "SELECT course_name, credits, semester FROM Course WHERE credits = 4;",
+    "assets": [
+      "assets/query_outputs/q01_05_retrieval_output_01.png"
+    ],
+    "output_lines": 8
+  },
+  {
+    "id": "1.6",
+    "category": "Retrieval",
+    "title": "Show all placement drives offering package above 8 LPA",
+    "sql": "SELECT company_name, drive_date, package_offered FROM Placement_Drive WHERE package_offered > 8;",
+    "assets": [
+      "assets/query_outputs/q01_06_retrieval_output_01.png"
+    ],
+    "output_lines": 12
+  },
+  {
+    "id": "1.7",
+    "category": "Retrieval",
+    "title": "Show top 5 students by cgpa",
+    "sql": "SELECT full_name, roll_no, cgpa FROM Student ORDER BY cgpa DESC LIMIT 5;",
+    "assets": [
+      "assets/query_outputs/q01_07_retrieval_output_01.png"
+    ],
+    "output_lines": 9
+  },
+  {
+    "id": "1.8",
+    "category": "Retrieval",
+    "title": "Show all exams scheduled after 1st May 2026",
+    "sql": "SELECT exam_name, exam_date, max_marks FROM Examination WHERE exam_date > '2026-05-01';",
+    "assets": [
+      "assets/query_outputs/q01_08_retrieval_output_01.png"
+    ],
+    "output_lines": 16
+  },
+  {
+    "id": "1.9",
+    "category": "Retrieval",
+    "title": "Show student details along with their department name",
+    "sql": "SELECT s.roll_no, s.full_name, d.dept_name\nFROM Student s, Department d\nWHERE s.dept_id = d.dept_id;",
+    "assets": [
+      "assets/query_outputs/q01_09_retrieval_output_01.png"
+    ],
+    "output_lines": 24
+  },
+  {
+    "id": "1.10",
+    "category": "Retrieval",
+    "title": "Show distinct designations used by faculty members",
+    "sql": "SELECT DISTINCT designation FROM Faculty;\n\n\n-- ***********************************************************\n-- 2. AGGREGATE FUNCTION QUERIES (5)\n-- ***********************************************************",
+    "assets": [
+      "assets/query_outputs/q01_10_retrieval_output_01.png"
+    ],
+    "output_lines": 8
+  },
+  {
+    "id": "2.1",
+    "category": "Aggregate Function",
+    "title": "Total number of students in the campus",
+    "sql": "SELECT COUNT(*) AS total_students FROM Student;",
+    "assets": [
+      "assets/query_outputs/q02_01_aggregate_output_01.png"
+    ],
+    "output_lines": 5
+  },
+  {
+    "id": "2.2",
+    "category": "Aggregate Function",
+    "title": "Average cgpa of all students",
+    "sql": "SELECT ROUND(AVG(cgpa),2) AS average_cgpa FROM Student;",
+    "assets": [
+      "assets/query_outputs/q02_02_aggregate_output_01.png"
+    ],
+    "output_lines": 5
+  },
+  {
+    "id": "2.3",
+    "category": "Aggregate Function",
+    "title": "Highest and lowest package offered across all placement drives",
+    "sql": "SELECT MAX(package_offered) AS highest_package, MIN(package_offered) AS lowest_package\nFROM Placement_Drive;",
+    "assets": [
+      "assets/query_outputs/q02_03_aggregate_output_01.png"
+    ],
+    "output_lines": 5
+  },
+  {
+    "id": "2.4",
+    "category": "Aggregate Function",
+    "title": "Number of students in each department",
+    "sql": "SELECT d.dept_name, COUNT(s.student_id) AS total_students\nFROM Department d\nLEFT JOIN Student s ON d.dept_id = s.dept_id\nGROUP BY d.dept_name;",
+    "assets": [
+      "assets/query_outputs/q02_04_aggregate_output_01.png"
+    ],
+    "output_lines": 10
+  },
+  {
+    "id": "2.5",
+    "category": "Aggregate Function",
+    "title": "Total salary paid by the campus to faculty of each department",
+    "sql": "SELECT d.dept_name, SUM(f.salary) AS total_salary\nFROM Department d\nJOIN Faculty f ON d.dept_id = f.dept_id\nGROUP BY d.dept_name;\n\n\n-- ***********************************************************\n-- 3. JOIN QUERIES (5)\n-- ***********************************************************",
+    "assets": [
+      "assets/query_outputs/q02_05_aggregate_output_01.png"
+    ],
+    "output_lines": 10
+  },
+  {
+    "id": "3.1",
+    "category": "JOIN",
+    "title": "List every student with the course they attend and the class faculty (INNER JOIN, 3 tables)",
+    "sql": "SELECT s.full_name AS student, c.course_name, f.full_name AS faculty\nFROM Attendance a\nJOIN Student s ON a.student_id = s.student_id\nJOIN Course c ON a.course_id = c.course_id\nJOIN Faculty f ON c.faculty_id = f.faculty_id;",
+    "assets": [
+      "assets/query_outputs/q03_01_join_output_01.png",
+      "assets/query_outputs/q03_01_join_output_02.png"
+    ],
+    "output_lines": 34
+  },
+  {
+    "id": "3.2",
+    "category": "JOIN",
+    "title": "List each student's marks together with the exam and course name",
+    "sql": "SELECT s.full_name AS student, e.exam_name, c.course_name, r.marks_obtained, r.grade\nFROM Result r\nJOIN Student s ON r.student_id = s.student_id\nJOIN Examination e ON r.exam_id = e.exam_id\nJOIN Course c ON e.course_id = c.course_id;",
+    "assets": [
+      "assets/query_outputs/q03_02_join_output_01.png"
+    ],
+    "output_lines": 29
+  },
+  {
+    "id": "3.3",
+    "category": "JOIN",
+    "title": "LEFT JOIN - show every student even if they never applied for placement",
+    "sql": "SELECT s.full_name, pd.company_name, pr.status\nFROM Student s\nLEFT JOIN Placement_Record pr ON s.student_id = pr.student_id\nLEFT JOIN Placement_Drive pd ON pr.drive_id = pd.drive_id\nORDER BY s.full_name;",
+    "assets": [
+      "assets/query_outputs/q03_03_join_output_01.png"
+    ],
+    "output_lines": 31
+  },
+  {
+    "id": "3.4",
+    "category": "JOIN",
+    "title": "List courses along with the department and the faculty teaching them",
+    "sql": "SELECT c.course_name, d.dept_name, f.full_name AS faculty_name\nFROM Course c\nJOIN Department d ON c.dept_id = d.dept_id\nJOIN Faculty f ON c.faculty_id = f.faculty_id;",
+    "assets": [
+      "assets/query_outputs/q03_04_join_output_01.png"
+    ],
+    "output_lines": 24
+  },
+  {
+    "id": "3.5",
+    "category": "JOIN",
+    "title": "RIGHT JOIN - show all placement drives and the students placed in them, if any",
+    "sql": "SELECT pd.company_name, s.full_name, pr.status\nFROM Placement_Record pr\nRIGHT JOIN Placement_Drive pd ON pr.drive_id = pd.drive_id\nLEFT JOIN Student s ON pr.student_id = s.student_id;\n\n\n-- ***********************************************************\n-- 4. NESTED (SUBQUERY) QUERIES (5)\n-- ***********************************************************",
+    "assets": [
+      "assets/query_outputs/q03_05_join_output_01.png"
+    ],
+    "output_lines": 28
+  },
+  {
+    "id": "4.1",
+    "category": "Nested Query",
+    "title": "Students whose cgpa is above the campus average",
+    "sql": "SELECT full_name, cgpa\nFROM Student\nWHERE cgpa > (SELECT AVG(cgpa) FROM Student);",
+    "assets": [
+      "assets/query_outputs/q04_01_nested_query_output_01.png"
+    ],
+    "output_lines": 13
+  },
+  {
+    "id": "4.2",
+    "category": "Nested Query",
+    "title": "Faculty who earn more than the average salary of their own department",
+    "sql": "SELECT full_name, dept_id, salary\nFROM Faculty f\nWHERE salary > (\n    SELECT AVG(salary) FROM Faculty WHERE dept_id = f.dept_id\n);",
+    "assets": [
+      "assets/query_outputs/q04_02_nested_query_output_01.png"
+    ],
+    "output_lines": 12
+  },
+  {
+    "id": "4.3",
+    "category": "Nested Query",
+    "title": "Students who have been selected in at least one placement drive",
+    "sql": "SELECT full_name, roll_no\nFROM Student\nWHERE student_id IN (\n    SELECT student_id FROM Placement_Record WHERE status = 'Selected'\n);",
+    "assets": [
+      "assets/query_outputs/q04_03_nested_query_output_01.png"
+    ],
+    "output_lines": 8
+  },
+  {
+    "id": "4.4",
+    "category": "Nested Query",
+    "title": "Courses that currently have no exam scheduled",
+    "sql": "SELECT course_name\nFROM Course\nWHERE course_id NOT IN (\n    SELECT DISTINCT course_id FROM Examination\n);",
+    "assets": [
+      "assets/query_outputs/q04_04_nested_query_output_01.png"
+    ],
+    "output_lines": 12
+  },
+  {
+    "id": "4.5",
+    "category": "Nested Query",
+    "title": "Student with the highest marks in each exam (correlated subquery)",
+    "sql": "SELECT e.exam_name, s.full_name, r.marks_obtained\nFROM Result r\nJOIN Examination e ON r.exam_id = e.exam_id\nJOIN Student s ON r.student_id = s.student_id\nWHERE r.marks_obtained = (\n    SELECT MAX(r2.marks_obtained) FROM Result r2 WHERE r2.exam_id = r.exam_id\n);\n\n\n-- ***********************************************************\n-- 5. UPDATE QUERIES (5)\n-- ***********************************************************",
+    "assets": [
+      "assets/query_outputs/q04_05_nested_query_output_01.png"
+    ],
+    "output_lines": 18
+  },
+  {
+    "id": "5.1",
+    "category": "UPDATE",
+    "title": "Update a student's cgpa after result declaration",
+    "sql": "UPDATE Student SET cgpa = 9.10 WHERE roll_no = 'FDAI001';",
+    "assets": [
+      "assets/query_outputs/q05_01_update_output_01.png"
+    ],
+    "output_lines": 10
+  },
+  {
+    "id": "5.2",
+    "category": "UPDATE",
+    "title": "Give a 10% salary hike to all Professors",
+    "sql": "UPDATE Faculty SET salary = salary * 1.10 WHERE designation = 'Professor';",
+    "assets": [
+      "assets/query_outputs/q05_02_update_output_01.png"
+    ],
+    "output_lines": 10
+  },
+  {
+    "id": "5.3",
+    "category": "UPDATE",
+    "title": "Mark a placement application as Selected",
+    "sql": "UPDATE Placement_Record SET status = 'Selected'\nWHERE student_id = 3 AND drive_id = 2;",
+    "assets": [
+      "assets/query_outputs/q05_03_update_output_01.png"
+    ],
+    "output_lines": 5
+  },
+  {
+    "id": "5.4",
+    "category": "UPDATE",
+    "title": "Correct the max marks of an exam",
+    "sql": "UPDATE Examination SET max_marks = 100 WHERE exam_name = 'Unit Test 1' AND max_marks <> 100;",
+    "assets": [
+      "assets/query_outputs/q05_04_update_output_01.png"
+    ],
+    "output_lines": 14
+  },
+  {
+    "id": "5.5",
+    "category": "UPDATE",
+    "title": "Update phone number of a student",
+    "sql": "UPDATE Student SET phone = '9876543210' WHERE roll_no = 'FDAI002';\n\n\n-- ***********************************************************\n-- 6. DELETE QUERIES (5)\n-- ***********************************************************",
+    "assets": [
+      "assets/query_outputs/q05_05_update_output_01.png"
+    ],
+    "output_lines": 10
+  },
+  {
+    "id": "6.1",
+    "category": "DELETE",
+    "title": "Remove a single wrong attendance entry",
+    "sql": "DELETE FROM Attendance WHERE attendance_id = 30;",
+    "assets": [
+      "assets/query_outputs/q06_01_delete_output_01.png"
+    ],
+    "output_lines": 10
+  },
+  {
+    "id": "6.2",
+    "category": "DELETE",
+    "title": "Remove placement applications that were rejected before 2026",
+    "sql": "DELETE FROM Placement_Record WHERE status = 'Rejected' AND placement_id = 20;",
+    "assets": [
+      "assets/query_outputs/q06_02_delete_output_01.png"
+    ],
+    "output_lines": 10
+  },
+  {
+    "id": "6.3",
+    "category": "DELETE",
+    "title": "Remove a faculty record that was entered by mistake (course reassigned first)",
+    "sql": "DELETE FROM Faculty WHERE faculty_id = 20;",
+    "assets": [
+      "assets/query_outputs/q06_03_delete_output_01.png"
+    ],
+    "output_lines": 10
+  },
+  {
+    "id": "6.4",
+    "category": "DELETE",
+    "title": "Remove exam records with zero marks entered by mistake",
+    "sql": "DELETE FROM Result WHERE marks_obtained = 0;",
+    "assets": [
+      "assets/query_outputs/q06_04_delete_output_01.png"
+    ],
+    "output_lines": 10
+  },
+  {
+    "id": "6.5",
+    "category": "DELETE",
+    "title": "Remove a placement drive that got cancelled",
+    "sql": "DELETE FROM Placement_Drive WHERE drive_id = 15;\n\n\n-- ***********************************************************\n-- 7. ALTER TABLE QUERIES (5)\n-- ***********************************************************",
+    "assets": [
+      "assets/query_outputs/q06_05_delete_output_01.png"
+    ],
+    "output_lines": 10
+  },
+  {
+    "id": "7.1",
+    "category": "ALTER TABLE",
+    "title": "Add a new column to store student's blood group",
+    "sql": "ALTER TABLE Student ADD COLUMN blood_group VARCHAR(5);",
+    "assets": [
+      "assets/query_outputs/q07_01_alter_table_output_01.png"
+    ],
+    "output_lines": 10
+  },
+  {
+    "id": "7.2",
+    "category": "ALTER TABLE",
+    "title": "Add a new column to store the mode of a class (Online/Offline)",
+    "sql": "ALTER TABLE Course ADD COLUMN mode VARCHAR(10) DEFAULT 'Offline';",
+    "assets": [
+      "assets/query_outputs/q07_02_alter_table_output_01.png"
+    ],
+    "output_lines": 10
+  },
+  {
+    "id": "7.3",
+    "category": "ALTER TABLE",
+    "title": "Modify phone number column length in Faculty table",
+    "sql": "ALTER TABLE Faculty MODIFY COLUMN phone VARCHAR(20);",
+    "assets": [
+      "assets/query_outputs/q07_03_alter_table_output_01.png"
+    ],
+    "output_lines": 10
+  },
+  {
+    "id": "7.4",
+    "category": "ALTER TABLE",
+    "title": "Rename a column in Placement_Drive for clarity",
+    "sql": "ALTER TABLE Placement_Drive RENAME COLUMN package_offered TO package_lpa;",
+    "assets": [
+      "assets/query_outputs/q07_04_alter_table_output_01.png"
+    ],
+    "output_lines": 10
+  },
+  {
+    "id": "7.5",
+    "category": "ALTER TABLE",
+    "title": "Drop the unused blood_group column (shown for reference/undo)",
+    "sql": "ALTER TABLE Student DROP COLUMN blood_group;\n\n\n-- ***********************************************************\n-- 8. PATTERN MATCHING QUERIES - LIKE (5)\n-- ***********************************************************",
+    "assets": [
+      "assets/query_outputs/q07_05_alter_table_output_01.png"
+    ],
+    "output_lines": 5
+  },
+  {
+    "id": "8.1",
+    "category": "Pattern Matching (LIKE)",
+    "title": "Students whose name starts with 'A'",
+    "sql": "SELECT full_name FROM Student WHERE full_name LIKE 'A%';",
+    "assets": [
+      "assets/query_outputs/q08_01_like_output_01.png"
+    ],
+    "output_lines": 11
+  },
+  {
+    "id": "8.2",
+    "category": "Pattern Matching (LIKE)",
+    "title": "Faculty whose email is on the campus.edu.in domain",
+    "sql": "SELECT full_name, email FROM Faculty WHERE email LIKE '%@campus.edu.in';",
+    "assets": [
+      "assets/query_outputs/q08_02_like_output_01.png"
+    ],
+    "output_lines": 24
+  },
+  {
+    "id": "8.3",
+    "category": "Pattern Matching (LIKE)",
+    "title": "Courses with 'Data' anywhere in the course name",
+    "sql": "SELECT course_name FROM Course WHERE course_name LIKE '%Data%';",
+    "assets": [
+      "assets/query_outputs/q08_03_like_output_01.png"
+    ],
+    "output_lines": 7
+  },
+  {
+    "id": "8.4",
+    "category": "Pattern Matching (LIKE)",
+    "title": "Companies whose name ends with 'a'",
+    "sql": "SELECT company_name FROM Placement_Drive WHERE company_name LIKE '%a';",
+    "assets": [
+      "assets/query_outputs/q08_04_like_output_01.png"
+    ],
+    "output_lines": 6
+  },
+  {
+    "id": "8.5",
+    "category": "Pattern Matching (LIKE)",
+    "title": "Students whose roll number matches the pattern FDAI0_1 (2nd last digit is 1)",
+    "sql": "SELECT roll_no, full_name FROM Student WHERE roll_no LIKE 'FDAI0_1';",
+    "assets": [
+      "assets/query_outputs/q08_05_like_output_01.png"
+    ],
+    "output_lines": 6
+  }
+]

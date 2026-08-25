@@ -82,6 +82,11 @@ Both programs were compiled with GCC and tested using representative normal, inv
 
 ## References
 
+## Complete Reports
+
+- [ATM Transaction Simulation report](./ATM%20Simulation/Assignment.pdf)
+- [Scientific Calculator report](./Scientific%20Calculator/Assignment.pdf)
+
 1. [C language and standard library reference — cppreference.com](https://en.cppreference.com/w/c)
 2. [`switch` statement reference — cppreference.com](https://en.cppreference.com/w/c/language/switch)
 3. [`do-while` loop reference — cppreference.com](https://en.cppreference.com/w/c/language/do)

@@ -9,6 +9,8 @@
 **Institution:** KES' Shroff College  
 **Subject:** Programming with C
 
+**Complete Report:** [View the complete ATM Transaction Simulation report](Assignment.pdf)
+
 [![Language: C](https://img.shields.io/badge/Language-C-A8B9CC?style=for-the-badge&logo=c&logoColor=white)](https://en.cppreference.com/w/c)
 [![Concept: Do-While](https://img.shields.io/badge/Core%20Concept-do--while-2F75B5?style=for-the-badge)](https://en.cppreference.com/w/c/language/do)
 [![Status: Verified](https://img.shields.io/badge/Status-Verified-2E7D32?style=for-the-badge)](https://github.com/codeXparadise/Assignments)
